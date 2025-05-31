@@ -1,0 +1,1170 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Les Patriotes</title>
+  
+  <!-- Meta Tags -->
+  <meta name="description" content="Mouvement de jeunes patriotes engagés pour le développement du Congo">
+  
+  <!-- Favicon -->
+  <link rel="icon" href="/assets/images/favicon.ico">
+  
+  <!-- CSS -->
+  <link rel="stylesheet" href="/assets/css/main.css">
+  
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: '#0047AB',    // Bleu Congo
+            secondary: '#CE1126',  // Rouge Congo
+            accent: '#FFD700',     // Or
+          },
+          fontFamily: {
+            sans: ['Montserrat', 'sans-serif'],
+          },
+          transitionProperty: {
+            'width': 'width',
+            'spacing': 'margin, padding',
+          },
+        }
+      }
+    }
+  </script>
+  
+  <!-- Custom Styles -->
+  <style>
+    /* Text gradient */
+    .text-gradient {
+      background: linear-gradient(90deg, #0047AB 0%, #CE1126 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    
+    /* Hero pattern */
+    .hero-pattern {
+      background-image: radial-gradient(circle at 25% 60%, rgba(0, 71, 171, 0.08) 0%, transparent 40%), 
+                      radial-gradient(circle at 75% 30%, rgba(206, 17, 38, 0.08) 0%, transparent 45%);
+    }
+    
+    /* Floating animation */
+    .floating {
+      animation: floating 6s ease-in-out infinite;
+    }
+    
+    @keyframes floating {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+    
+    /* Nav link underline animation */
+    .nav-link {
+      position: relative;
+    }
+    
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #CE1126;
+      transition: all 0.3s ease;
+    }
+    
+    .nav-link:hover::after {
+      width: 100%;
+    }
+    
+    /* Dropdown animation */
+    .dropdown-content {
+      visibility: hidden;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: all 0.3s ease;
+    }
+    
+    .group:hover .dropdown-content {
+      visibility: visible;
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+
+<body class="font-sans bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-100">
+  <!-- Navigation -->
+  <nav class="fixed w-full bg-white/95 dark:bg-gray-900/95 backdrop-blur-md shadow-sm z-50 transition-all duration-300 py-4 px-[5%] lg:py-6" id="navbar">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <!-- Logo -->
+      <a href="/" class="flex items-center gap-2">
+        <img src="/assets/images/logo-patriotes.png" alt="Logo Les Patriotes" class="h-8 lg:h-10 transition-all">
+        <span class="text-xl lg:text-2xl font-bold text-primary dark:text-white">
+          Les <span class="text-secondary">Patriotes</span>
+        </span>
+      </a>
+
+      <!-- Desktop Menu -->
+      <div class="hidden lg:flex items-center gap-8">
+        <ul class="flex items-center gap-6">
+          <li>
+            <a href="#" class="nav-link font-medium">Accueil</a>
+          </li>
+          
+          <li class="relative group">
+            <a href="#" class="nav-link flex items-center gap-1 font-medium">
+              À Propos <i class="fas fa-chevron-down text-xs mt-0.5"></i>
+            </a>
+            <ul class="dropdown-content absolute left-0 top-full mt-2 w-48 bg-white dark:bg-gray-800 rounded-lg shadow-xl py-2 z-50 border border-gray-100 dark:border-gray-700">
+              <li><a href="#" class="block px-4 py-2 hover:bg-gray-50 dark:hover:bg-gray-700">Notre Histoire</a></li>
+              <li><a href="#" class="block px-4 py-2 hover:bg-gray-50 dark:hover:bg-gray-700">Nos Valeurs</a></li>
+              <li><a href="#" class="block px-4 py-2 hover:bg-gray-50 dark:hover:bg-gray-700">Équipe</a></li>
+            </ul>
+          </li>
+          
+          <li><a href="#" class="nav-link font-medium">Nos Actions</a></li>
+          <li><a href="#" class="nav-link font-medium">Blog</a></li>
+          <li><a href="#" class="nav-link font-medium">Contact</a></li>
+        </ul>
+
+        <div class="flex items-center gap-4 ml-6">
+          <button class="text-gray-600 dark:text-gray-300 hover:text-primary transition-colors" aria-label="Recherche">
+            <i class="fas fa-search"></i>
+          </button>
+          
+          <button id="theme-toggle" class="text-gray-600 dark:text-gray-300 hover:text-primary transition-colors" aria-label="Changer de thème">
+            <i class="fas fa-moon dark:hidden"></i>
+            <i class="fas fa-sun hidden dark:block"></i>
+          </button>
+          
+          <a href="#" class="bg-gradient-to-r from-primary to-secondary text-white px-5 py-2 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all hover:-translate-y-0.5">
+            Rejoindre
+          </a>
+        </div>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <button id="mobile-menu-button" class="lg:hidden text-2xl" aria-label="Menu mobile">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="lg:hidden hidden absolute left-0 w-full bg-white dark:bg-gray-800 shadow-lg px-[5%] py-4 transition-all duration-300">
+      <ul class="space-y-4 border-t border-gray-100 dark:border-gray-700 pt-4">
+        <li><a href="#" class="block py-2 font-medium">Accueil</a></li>
+        
+        <li class="relative">
+          <button id="dropdown-toggle" class="flex items-center justify-between w-full py-2 font-medium">
+            À Propos <i class="fas fa-chevron-down text-xs ml-1 transition-transform duration-200"></i>
+          </button>
+          <ul id="dropdown-menu" class="hidden pl-4 mt-2 space-y-2 border-l-2 border-gray-200 dark:border-gray-600">
+            <li><a href="#" class="block py-1.5 text-gray-600 dark:text-gray-300">Notre Histoire</a></li>
+            <li><a href="#" class="block py-1.5 text-gray-600 dark:text-gray-300">Nos Valeurs</a></li>
+            <li><a href="#" class="block py-1.5 text-gray-600 dark:text-gray-300">Équipe</a></li>
+          </ul>
+        </li>
+        
+        <li><a href="#" class="block py-2 font-medium">Nos Actions</a></li>
+        <li><a href="#" class="block py-2 font-medium">Blog</a></li>
+        <li><a href="#" class="block py-2 font-medium">Contact</a></li>
+      </ul>
+      
+      <div class="flex items-center gap-4 mt-6 pt-4 border-t border-gray-100 dark:border-gray-700">
+        <button class="text-gray-600 dark:text-gray-300" aria-label="Recherche">
+          <i class="fas fa-search"></i>
+        </button>
+        <button id="mobile-theme-toggle" class="text-gray-600 dark:text-gray-300" aria-label="Changer de thème">
+          <i class="fas fa-moon dark:hidden"></i>
+          <i class="fas fa-sun hidden dark:block"></i>
+        </button>
+        <a href="#" class="bg-gradient-to-r from-primary to-secondary text-white px-5 py-2 rounded-full font-semibold text-sm ml-auto">
+          Rejoindre
+        </a>
+      </div>
+    </div>
+  </nav>
+
+
+<!-- Page À Propos - Section Histoire -->
+<section class="min-h-screen py-24 px-[5%] bg-gray-50 dark:bg-gray-800/30 relative overflow-hidden">
+  <!-- Éléments décoratifs -->
+  <div class="absolute top-0 left-0 w-full h-full opacity-10">
+    <div class="absolute top-1/4 left-10 w-60 h-60 rounded-full bg-primary/10 blur-3xl"></div>
+    <div class="absolute bottom-1/4 right-10 w-80 h-80 rounded-full bg-secondary/10 blur-3xl"></div>
+  </div>
+
+  <div class="max-w-6xl mx-auto relative z-10">
+    <!-- Fil d'Ariane -->
+    <nav class="flex mb-8" aria-label="Fil d'Ariane">
+      <ol class="inline-flex items-center space-x-2">
+        <li>
+          <a href="/" class="text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-accent transition">
+            Accueil
+          </a>
+        </li>
+        <li class="flex items-center">
+          <span class="mx-2 text-gray-400">/</span>
+        </li>
+        <li aria-current="page">
+          <span class="text-primary dark:text-accent font-medium">À Propos</span>
+        </li>
+      </ol>
+    </nav>
+
+    <!-- En-tête -->
+    <div class="text-center mb-16">
+      <h1 class="text-4xl md:text-5xl font-bold mb-6">
+        Notre <span class="text-gradient">Histoire</span>
+      </h1>
+      <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+        Comment une idée simple est devenue un mouvement national pour le renouveau patriotique
+      </p>
+    </div>
+
+    <!-- Contenu principal -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <!-- Texte -->
+      <div class="prose dark:prose-invert max-w-none">
+        <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-6">Les Origines</h2>
+        
+        <p class="text-lg text-gray-600 dark:text-gray-300 mb-6">
+          Dans la République Démocratique du Congo, une nouvelle génération de jeunes se lève, consciente des défis qui se dressent devant elle. Ces jeunes ont observé avec inquiétude l'individualisme croissant qui a imprégné notre société.
+        </p>
+        
+        <blockquote class="border-l-4 border-secondary pl-6 my-6 italic text-gray-700 dark:text-gray-300">
+          "Le linge sale se lave en famille" - Ce proverbe africain a guidé notre volonté de trouver des solutions internes plutôt que de se plaindre à l'extérieur
+        </blockquote>
+        
+        <p class="text-lg text-gray-600 dark:text-gray-300 mb-6">
+          C'est dans ce contexte que les jeunes patriotes se sont réunis en 2020, refusant que l'histoire se répète. Au lieu de se lamenter sur ce qui manquait, ils ont décidé d'agir concrètement.
+        </p>
+        
+        <h3 class="text-xl font-semibold text-gray-800 dark:text-white mb-4">Fondation Officielle</h3>
+        
+        <p class="text-lg text-gray-600 dark:text-gray-300">
+          La structure <strong>"Les Patriotes"</strong> a été officiellement créée en 2021 comme espace apolitique où les jeunes pourraient :
+        </p>
+        
+        <ul class="space-y-3 my-6">
+          <li class="flex items-start">
+            <span class="flex-shrink-0 w-2 h-2 mt-2 rounded-full bg-primary mr-3"></span>
+            <span>Échanger des idées constructives</span>
+          </li>
+          <li class="flex items-start">
+            <span class="flex-shrink-0 w-2 h-2 mt-2 rounded-full bg-secondary mr-3"></span>
+            <span>Mettre en œuvre leurs compétences</span>
+          </li>
+          <li class="flex items-start">
+            <span class="flex-shrink-0 w-2 h-2 mt-2 rounded-full bg-accent mr-3"></span>
+            <span>Travailler ensemble pour la patrie</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Timeline -->
+      <div class="bg-white dark:bg-gray-700 rounded-2xl shadow-xl p-8 border border-gray-100 dark:border-gray-600">
+        <h3 class="text-2xl font-bold mb-8 text-center text-gray-800 dark:text-white">Notre Parcours</h3>
+        
+        <div class="space-y-8 relative before:absolute before:top-0 before:left-8 before:h-full before:w-0.5 before:bg-gray-200 dark:before:bg-gray-600">
+          <!-- Étape 1 -->
+          <div class="relative pl-12">
+            <div class="absolute left-0 top-0 w-6 h-6 rounded-full bg-primary border-4 border-white dark:border-gray-700 flex items-center justify-center">
+              <span class="w-2 h-2 rounded-full bg-white"></span>
+            </div>
+            <h4 class="font-bold text-lg text-gray-800 dark:text-white mb-2">2020 - Prise de conscience</h4>
+            <p class="text-gray-600 dark:text-gray-300">
+              Rencontres informelles entre jeunes leaders préoccupés par la montée de l'individualisme
+            </p>
+          </div>
+          
+          <!-- Étape 2 -->
+          <div class="relative pl-12">
+            <div class="absolute left-0 top-0 w-6 h-6 rounded-full bg-secondary border-4 border-white dark:border-gray-700 flex items-center justify-center">
+              <span class="w-2 h-2 rounded-full bg-white"></span>
+            </div>
+            <h4 class="font-bold text-lg text-gray-800 dark:text-white mb-2">Janvier 2021 - Lancement</h4>
+            <p class="text-gray-600 dark:text-gray-300">
+              Création officielle du mouvement avec 50 membres fondateurs
+            </p>
+          </div>
+          
+          <!-- Étape 3 -->
+          <div class="relative pl-12">
+            <div class="absolute left-0 top-0 w-6 h-6 rounded-full bg-accent border-4 border-white dark:border-gray-700 flex items-center justify-center">
+              <span class="w-2 h-2 rounded-full bg-white"></span>
+            </div>
+            <h4 class="font-bold text-lg text-gray-800 dark:text-white mb-2">Juillet 2021 - Premier projet</h4>
+            <p class="text-gray-600 dark:text-gray-300">
+              Programme "Écoles Patriotiques" dans 3 établissements de Kinshasa
+            </p>
+          </div>
+          
+          <!-- Étape 4 -->
+          <div class="relative pl-12">
+            <div class="absolute left-0 top-0 w-6 h-6 rounded-full bg-primary border-4 border-white dark:border-gray-700 flex items-center justify-center">
+              <span class="w-2 h-2 rounded-full bg-white"></span>
+            </div>
+            <h4 class="font-bold text-lg text-gray-800 dark:text-white mb-2">2022 - Expansion</h4>
+            <p class="text-gray-600 dark:text-gray-300">
+              Ouverture de 5 antennes régionales et partenariat avec le Ministère de la Jeunesse
+            </p>
+          </div>
+          
+          <!-- Étape 5 -->
+          <div class="relative pl-12">
+            <div class="absolute left-0 top-0 w-6 h-6 rounded-full bg-secondary border-4 border-white dark:border-gray-700 flex items-center justify-center">
+              <span class="w-2 h-2 rounded-full bg-white"></span>
+            </div>
+            <h4 class="font-bold text-lg text-gray-800 dark:text-white mb-2">2023 - Aujourd'hui</h4>
+            <p class="text-gray-600 dark:text-gray-300">
+              Plus de 1,200 membres actifs et 36 projets réalisés à travers le pays
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Citation inspirante -->
+    <div class="mt-20 text-center max-w-4xl mx-auto">
+      <blockquote class="text-2xl md:text-3xl font-medium italic text-gray-700 dark:text-gray-300 leading-relaxed">
+        "Nous ne sommes pas seulement les héritiers de notre histoire, mais les architectes de celle que nous écrirons ensemble."
+      </blockquote>
+      <div class="mt-8 flex items-center justify-center">
+        <div class="w-12 h-12 rounded-full bg-gradient-to-r from-primary to-secondary flex items-center justify-center text-white font-bold mr-4">LP</div>
+        <div class="text-left">
+          <div class="font-semibold">Les Patriotes</div>
+          <div class="text-sm text-gray-500">Mouvement citoyen</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- Page À Propos - Section Histoire (Version Premium) -->
+<section class="min-h-screen py-28 px-[5%] bg-white dark:bg-gray-900 relative overflow-hidden">
+  <!-- Fond animé -->
+  <div class="absolute inset-0 overflow-hidden">
+    <div class="absolute top-0 left-0 w-full h-full bg-[url('/assets/images/congo-map-texture.png')] opacity-[0.03] dark:opacity-[0.05] bg-center bg-no-repeat"></div>
+    <div class="absolute top-1/3 -left-20 w-96 h-96 rounded-full bg-primary/5 blur-3xl animate-float-slow"></div>
+    <div class="absolute bottom-1/4 -right-20 w-96 h-96 rounded-full bg-secondary/5 blur-3xl animate-float-slow animation-delay-2000"></div>
+  </div>
+
+  <div class="max-w-7xl mx-auto relative z-10">
+    <!-- En-tête immersif -->
+    <div class="text-center mb-20">
+      <div class="inline-flex items-center justify-center mb-6">
+        <span class="h-px w-16 bg-gray-300 dark:bg-gray-600 mr-4"></span>
+        <span class="text-sm font-medium text-primary dark:text-accent uppercase tracking-wider">Notre Genèse</span>
+        <span class="h-px w-16 bg-gray-300 dark:bg-gray-600 ml-4"></span>
+      </div>
+      <h1 class="text-5xl md:text-6xl font-bold mb-6 leading-tight">
+        <span class="bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">L'Épopée</span><br>
+        d'un Mouvement
+      </h1>
+      <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+        De l'étincelle initiale à l'incendie patriotique qui embrase notre nation
+      </p>
+    </div>
+
+    <!-- Contenu principal - Approche narrative -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+      <!-- Colonne texte -->
+      <div class="lg:col-span-7 space-y-10">
+        <!-- Bloc 1 -->
+        <div class="relative pl-10 before:absolute before:left-0 before:top-2 before:h-6 before:w-6 before:rounded-full before:bg-primary/10 before:border-2 before:border-primary before:animate-pulse">
+          <h2 class="text-3xl font-bold text-gray-800 dark:text-white mb-6">Le Contexte</h2>
+          <div class="prose dark:prose-invert max-w-none">
+            <p class="text-lg leading-relaxed">
+              En 2020, face à la montée de l'individualisme et au désengagement civique, un groupe de 12 jeunes Congolais issus de divers horizons se réunit clandestinement à Kinshasa. Leur constat est sans appel : <span class="font-semibold text-primary dark:text-accent">le patriotisme se meurt</span>, étouffé par les divisions et le chacun-pour-soi.
+            </p>
+          </div>
+        </div>
+
+        <!-- Bloc 2 -->
+        <div class="relative pl-10 before:absolute before:left-0 before:top-2 before:h-6 before:w-6 before:rounded-full before:bg-secondary/10 before:border-2 before:border-secondary before:animate-pulse animation-delay-1000">
+          <h2 class="text-3xl font-bold text-gray-800 dark:text-white mb-6">La Naissance</h2>
+          <div class="prose dark:prose-invert max-w-none">
+            <p class="text-lg leading-relaxed">
+              Après 6 mois de réflexion intensive, <span class="font-semibold">Les Patriotes</span> voient officiellement le jour le 30 juin 2021 - date symbolique de l'indépendance. Le manifeste fondateur, rédigé collectivement, pose les bases d'une <span class="italic">"Renaissance Patriotique par l'Action Concrète"</span>.
+            </p>
+            <blockquote class="border-l-4 border-accent pl-6 my-6 bg-gray-50 dark:bg-gray-800/50 p-4 rounded-r-lg">
+              <p class="text-gray-700 dark:text-gray-300">"Nous ne demanderons pas ce que notre pays peut faire pour nous, mais ce que nous pouvons faire pour notre pays"</p>
+              <cite class="block mt-2 text-sm text-gray-500 dark:text-gray-400">- Extrait du Manifeste des Patriotes, 2021</cite>
+            </blockquote>
+          </div>
+        </div>
+
+        <!-- Bloc 3 -->
+        <div class="relative pl-10 before:absolute before:left-0 before:top-2 before:h-6 before:w-6 before:rounded-full before:bg-accent/10 before:border-2 before:border-accent before:animate-pulse animation-delay-2000">
+          <h2 class="text-3xl font-bold text-gray-800 dark:text-white mb-6">L'Expansion</h2>
+          <div class="prose dark:prose-invert max-w-none">
+            <p class="text-lg leading-relaxed">
+              En 2 ans seulement, le mouvement s'étend à 8 provinces grâce à un <span class="font-semibold">réseau de jeunes ambassadeurs</span>. Les projets se multiplient : écoles patriotiques, ateliers citoyens, concours d'innovation sociale...
+            </p>
+            <ul class="grid grid-cols-1 md:grid-cols-2 gap-4 my-6">
+              <li class="flex items-start space-x-3">
+                <svg class="flex-shrink-0 h-5 w-5 text-secondary mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span class="text-gray-600 dark:text-gray-300">+1,247 membres actifs</span>
+              </li>
+              <li class="flex items-start space-x-3">
+                <svg class="flex-shrink-0 h-5 w-5 text-secondary mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span class="text-gray-600 dark:text-gray-300">36 projets concrets</span>
+              </li>
+              <li class="flex items-start space-x-3">
+                <svg class="flex-shrink-0 h-5 w-5 text-secondary mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span class="text-gray-600 dark:text-gray-300">12 régions couvertes</span>
+              </li>
+              <li class="flex items-start space-x-3">
+                <svg class="flex-shrink-0 h-5 w-5 text-secondary mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span class="text-gray-600 dark:text-gray-300">24 partenariats stratégiques</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Colonne visuelle -->
+      <div class="lg:col-span-5 sticky top-28">
+        <!-- Timeline verticale -->
+        <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl border border-gray-100 dark:border-gray-700 p-8">
+          <h3 class="text-2xl font-bold mb-8 text-center flex items-center justify-center">
+            <span class="mr-2">🚀</span>
+            <span class="text-gradient">Notre Chronologie</span>
+          </h3>
+          
+          <div class="relative pl-10 space-y-10 before:absolute before:left-[2.15rem] before:top-0 before:h-full before:w-0.5 before:bg-gradient-to-b from-primary via-secondary to-accent">
+            <!-- Étape 1 -->
+            <div class="relative">
+              <div class="absolute left-0 top-0 w-10 h-10 rounded-full bg-primary/10 border-4 border-white dark:border-gray-800 flex items-center justify-center text-primary dark:text-accent text-lg font-bold shadow-md">
+                1
+              </div>
+              <div class="ml-14">
+                <h4 class="font-bold text-lg text-gray-800 dark:text-white mb-1">Février 2020</h4>
+                <p class="text-gray-600 dark:text-gray-400 text-sm">Premières réunions clandestines à Kinshasa</p>
+                <div class="mt-3 p-3 bg-gray-50 dark:bg-gray-700 rounded-lg border-l-4 border-primary">
+                  <p class="text-sm text-gray-600 dark:text-gray-300 italic">"Nous étions 12 autour d'une table, avec pour seule arme notre volonté de changer les choses"</p>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Étape 2 -->
+            <div class="relative">
+              <div class="absolute left-0 top-0 w-10 h-10 rounded-full bg-secondary/10 border-4 border-white dark:border-gray-800 flex items-center justify-center text-secondary text-lg font-bold shadow-md">
+                2
+              </div>
+              <div class="ml-14">
+                <h4 class="font-bold text-lg text-gray-800 dark:text-white mb-1">30 Juin 2021</h4>
+                <p class="text-gray-600 dark:text-gray-400 text-sm">Lancement officiel avec 50 membres fondateurs</p>
+                <div class="mt-3">
+                  <img src="/assets/images/founding-members.jpg" alt="Membres fondateurs" class="rounded-lg shadow-sm border border-gray-200 dark:border-gray-600">
+                </div>
+              </div>
+            </div>
+            
+            <!-- Étape 3 -->
+            <div class="relative">
+              <div class="absolute left-0 top-0 w-10 h-10 rounded-full bg-accent/10 border-4 border-white dark:border-gray-800 flex items-center justify-center text-accent text-lg font-bold shadow-md">
+                3
+              </div>
+              <div class="ml-14">
+                <h4 class="font-bold text-lg text-gray-800 dark:text-white mb-1">2022</h4>
+                <p class="text-gray-600 dark:text-gray-400 text-sm">Expansion nationale et premiers partenariats</p>
+                <div class="mt-3 flex space-x-2">
+                  <span class="px-2 py-1 bg-primary/10 text-primary dark:text-accent text-xs rounded-full">5 provinces</span>
+                  <span class="px-2 py-1 bg-secondary/10 text-secondary text-xs rounded-full">12 projets</span>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Étape 4 -->
+            <div class="relative">
+              <div class="absolute left-0 top-0 w-10 h-10 rounded-full bg-primary/10 border-4 border-white dark:border-gray-800 flex items-center justify-center text-primary dark:text-accent text-lg font-bold shadow-md">
+                4
+              </div>
+              <div class="ml-14">
+                <h4 class="font-bold text-lg text-gray-800 dark:text-white mb-1">2023</h4>
+                <p class="text-gray-600 dark:text-gray-400 text-sm">Reconnaissance institutionnelle</p>
+                <div class="mt-3 p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                  <p class="text-sm text-gray-600 dark:text-gray-300">Partenariat avec le Ministère de la Jeunesse et 3 universités nationales</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="mt-20 text-center">
+      <a href="/valeurs" class="inline-flex items-center justify-center gap-3 bg-gradient-to-r from-primary to-secondary text-white px-8 py-4 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1 group">
+        Découvrir nos valeurs fondamentales
+        <span class="group-hover:translate-x-1 transition-transform">
+          <i class="fas fa-arrow-right"></i>
+        </span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Styles d'animation personnalisés -->
+<style>
+  @keyframes float-slow {
+    0%, 100% { transform: translateY(0) translateX(0); }
+    50% { transform: translateY(-20px) translateX(10px); }
+  }
+  .animate-float-slow {
+    animation: float-slow 12s ease-in-out infinite;
+  }
+  .animation-delay-1000 {
+    animation-delay: 1s;
+  }
+  .animation-delay-2000 {
+    animation-delay: 2s;
+  }
+</style>
+
+
+
+
+<!-- Section Nos Valeurs -->
+<section class="py-28 px-[5%] bg-gray-50 dark:bg-gray-800/50 relative overflow-hidden">
+  <!-- Éléments décoratifs dynamiques -->
+  <div class="absolute top-0 left-0 w-full h-full">
+    <div class="absolute top-1/4 left-1/4 w-64 h-64 rounded-full bg-primary/5 blur-3xl animate-pulse-slow"></div>
+    <div class="absolute bottom-1/3 right-1/4 w-72 h-72 rounded-full bg-secondary/5 blur-3xl animate-pulse-slow animation-delay-2000"></div>
+  </div>
+
+  <div class="max-w-7xl mx-auto relative z-10">
+    <!-- En-tête percutant -->
+    <div class="text-center mb-20">
+      <span class="inline-flex items-center px-4 py-2 bg-white dark:bg-gray-700 rounded-full text-sm font-medium text-primary dark:text-accent mb-4 shadow-sm">
+        <i class="fas fa-heart mr-2"></i> Notre ADN
+      </span>
+      <h2 class="text-4xl md:text-5xl font-bold mb-6">
+        Les <span class="text-gradient">5 Piliers</span> de Notre Engagement
+      </h2>
+      <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+        Ces principes fondamentaux guident chacune de nos actions et définissent ce que signifie être un Patriote au quotidien.
+      </p>
+    </div>
+
+    <!-- Grille de valeurs interactives -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 mb-16">
+      <!-- Valeur 1 -->
+      <div class="group relative bg-white dark:bg-gray-700 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border-b-4 border-primary">
+        <div class="p-8 text-center">
+          <div class="w-20 h-20 mx-auto mb-6 rounded-2xl bg-primary/10 flex items-center justify-center text-primary dark:text-accent text-3xl group-hover:rotate-y-180 transition-all duration-500">
+            <i class="fas fa-hand-holding-heart"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-3">Amour de la Patrie</h3>
+          <p class="text-gray-600 dark:text-gray-300 text-sm">
+            Un attachement viscéral à notre terre et à nos concitoyens, fondement de toutes nos actions.
+          </p>
+        </div>
+        <div class="px-6 pb-6 hidden group-hover:block animate-fade-in">
+          <div class="border-t border-gray-100 dark:border-gray-600 pt-4">
+            <h4 class="text-xs font-semibold text-primary dark:text-accent mb-2 uppercase tracking-wider">Manifestation Concrète</h4>
+            <ul class="space-y-2 text-xs text-gray-500 dark:text-gray-400">
+              <li class="flex items-start">
+                <span class="text-secondary mr-1">•</span>
+                <span>Journées de sensibilisation patriotique</span>
+              </li>
+              <li class="flex items-start">
+                <span class="text-secondary mr-1">•</span>
+                <span>Célébration des symboles nationaux</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Valeur 2 -->
+      <div class="group relative bg-white dark:bg-gray-700 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border-b-4 border-secondary">
+        <div class="p-8 text-center">
+          <div class="w-20 h-20 mx-auto mb-6 rounded-2xl bg-secondary/10 flex items-center justify-center text-secondary text-3xl group-hover:rotate-y-180 transition-all duration-500">
+            <i class="fas fa-people-carry"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-3">Empathie Collective</h3>
+          <p class="text-gray-600 dark:text-gray-300 text-sm">
+            Capacité à se mettre au service des autres et à comprendre les besoins de nos communautés.
+          </p>
+        </div>
+        <div class="px-6 pb-6 hidden group-hover:block animate-fade-in">
+          <div class="border-t border-gray-100 dark:border-gray-600 pt-4">
+            <h4 class="text-xs font-semibold text-secondary mb-2 uppercase tracking-wider">Manifestation Concrète</h4>
+            <ul class="space-y-2 text-xs text-gray-500 dark:text-gray-400">
+              <li class="flex items-start">
+                <span class="text-primary mr-1">•</span>
+                <span>Programmes d'écoute communautaire</span>
+              </li>
+              <li class="flex items-start">
+                <span class="text-primary mr-1">•</span>
+                <span>Actions ciblées pour publics vulnérables</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Valeur 3 -->
+      <div class="group relative bg-white dark:bg-gray-700 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border-b-4 border-accent">
+        <div class="p-8 text-center">
+          <div class="w-20 h-20 mx-auto mb-6 rounded-2xl bg-accent/10 flex items-center justify-center text-accent text-3xl group-hover:rotate-y-180 transition-all duration-500">
+            <i class="fas fa-chess-king"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-3">Leadership Serviteur</h3>
+          <p class="text-gray-600 dark:text-gray-300 text-sm">
+            Initiative et responsabilité au service du bien commun plutôt que de l'intérêt personnel.
+          </p>
+        </div>
+        <div class="px-6 pb-6 hidden group-hover:block animate-fade-in">
+          <div class="border-t border-gray-100 dark:border-gray-600 pt-4">
+            <h4 class="text-xs font-semibold text-accent mb-2 uppercase tracking-wider">Manifestation Concrète</h4>
+            <ul class="space-y-2 text-xs text-gray-500 dark:text-gray-400">
+              <li class="flex items-start">
+                <span class="text-secondary mr-1">•</span>
+                <span>Formation de jeunes leaders</span>
+              </li>
+              <li class="flex items-start">
+                <span class="text-secondary mr-1">•</span>
+                <span>Système de mentorat inversé</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Valeur 4 -->
+      <div class="group relative bg-white dark:bg-gray-700 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border-b-4 border-primary">
+        <div class="p-8 text-center">
+          <div class="w-20 h-20 mx-auto mb-6 rounded-2xl bg-primary/10 flex items-center justify-center text-primary dark:text-accent text-3xl group-hover:rotate-y-180 transition-all duration-500">
+            <i class="fas fa-shield-alt"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-3">Intégrité Totale</h3>
+          <p class="text-gray-600 dark:text-gray-300 text-sm">
+            Transparence radicale et éthique inébranlable dans toutes nos décisions et actions.
+          </p>
+        </div>
+        <div class="px-6 pb-6 hidden group-hover:block animate-fade-in">
+          <div class="border-t border-gray-100 dark:border-gray-600 pt-4">
+            <h4 class="text-xs font-semibold text-primary dark:text-accent mb-2 uppercase tracking-wider">Manifestation Concrète</h4>
+            <ul class="space-y-2 text-xs text-gray-500 dark:text-gray-400">
+              <li class="flex items-start">
+                <span class="text-secondary mr-1">•</span>
+                <span>Rapports financiers publics trimestriels</span>
+              </li>
+              <li class="flex items-start">
+                <span class="text-secondary mr-1">•</span>
+                <span>Charte éthique contraignante</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Valeur 5 -->
+      <div class="group relative bg-white dark:bg-gray-700 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border-b-4 border-secondary">
+        <div class="p-8 text-center">
+          <div class="w-20 h-20 mx-auto mb-6 rounded-2xl bg-secondary/10 flex items-center justify-center text-secondary text-3xl group-hover:rotate-y-180 transition-all duration-500">
+            <i class="fas fa-medal"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-3">Excellence Continue</h3>
+          <p class="text-gray-600 dark:text-gray-300 text-sm">
+            Recherche permanente de la qualité maximale dans tout ce que nous entreprenons.
+          </p>
+        </div>
+        <div class="px-6 pb-6 hidden group-hover:block animate-fade-in">
+          <div class="border-t border-gray-100 dark:border-gray-600 pt-4">
+            <h4 class="text-xs font-semibold text-secondary mb-2 uppercase tracking-wider">Manifestation Concrète</h4>
+            <ul class="space-y-2 text-xs text-gray-500 dark:text-gray-400">
+              <li class="flex items-start">
+                <span class="text-primary mr-1">•</span>
+                <span>Processus d'amélioration continue</span>
+              </li>
+              <li class="flex items-start">
+                <span class="text-primary mr-1">•</span>
+                <span>Benchmark international systématique</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section d'approfondissement -->
+    <div class="bg-white dark:bg-gray-700 rounded-2xl shadow-xl overflow-hidden">
+      <div class="grid grid-cols-1 lg:grid-cols-2">
+        <!-- Image -->
+        <div class="bg-gradient-to-r from-primary/5 to-secondary/5 h-64 lg:h-full flex items-center justify-center p-10">
+          <img src="/assets/images/values-in-action.jpg" alt="Valeurs en action" class="rounded-lg shadow-md border-4 border-white dark:border-gray-800 w-full h-auto max-h-64 object-cover">
+        </div>
+        
+        <!-- Contenu -->
+        <div class="p-10 lg:p-12">
+          <h3 class="text-2xl font-bold mb-6">Comment Nous Vivons Ces Valeurs</h3>
+          
+          <div class="space-y-6">
+            <div class="flex items-start">
+              <div class="flex-shrink-0 mt-1 mr-4 text-primary dark:text-accent text-xl">
+                <i class="fas fa-check-circle"></i>
+              </div>
+              <div>
+                <h4 class="font-semibold text-gray-800 dark:text-white mb-2">Processus d'Adhésion</h4>
+                <p class="text-gray-600 dark:text-gray-300 text-sm">
+                  Tout nouveau membre suit un parcours d'immersion de 3 mois pour intégrer ces valeurs avant engagement formel.
+                </p>
+              </div>
+            </div>
+            
+            <div class="flex items-start">
+              <div class="flex-shrink-0 mt-1 mr-4 text-secondary text-xl">
+                <i class="fas fa-check-circle"></i>
+              </div>
+              <div>
+                <h4 class="font-semibold text-gray-800 dark:text-white mb-2">Évaluation Continue</h4>
+                <p class="text-gray-600 dark:text-gray-300 text-sm">
+                  Chaque projet est évalué sur son alignement avec nos 5 piliers via une grille d'analyse détaillée.
+                </p>
+              </div>
+            </div>
+            
+            <div class="flex items-start">
+              <div class="flex-shrink-0 mt-1 mr-4 text-accent text-xl">
+                <i class="fas fa-check-circle"></i>
+              </div>
+              <div>
+                <h4 class="font-semibold text-gray-800 dark:text-white mb-2">Cérémonies de Reconnaissance</h4>
+                <p class="text-gray-600 dark:text-gray-300 text-sm">
+                  Nous célébrons trimestriellement les membres exemplifiant le mieux chaque valeur par des actions concrètes.
+                </p>
+              </div>
+            </div>
+          </div>
+          
+          <a href="/actions" class="mt-8 inline-flex items-center gap-2 text-primary dark:text-accent font-medium hover:gap-3 transition-all">
+            Voir nos valeurs en action <i class="fas fa-arrow-right text-sm"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Styles d'animation personnalisés -->
+  <style>
+    @keyframes pulse-slow {
+      0%, 100% { opacity: 0.05; }
+      50% { opacity: 0.1; }
+    }
+    .animate-pulse-slow {
+      animation: pulse-slow 6s ease-in-out infinite;
+    }
+    @keyframes rotate-y-180 {
+      from { transform: rotateY(0); }
+      to { transform: rotateY(180deg); }
+    }
+    .group-hover\:rotate-y-180:hover {
+      animation: rotate-y-180 0.5s ease-in-out forwards;
+    }
+    @keyframes fade-in {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fade-in {
+      animation: fade-in 0.3s ease-out forwards;
+    }
+  </style>
+</section>
+
+
+
+
+<!-- Section Vision -->
+<section class="py-28 px-[5%] bg-gradient-to-br from-white to-gray-50 dark:from-gray-900 dark:to-gray-800 relative overflow-hidden">
+  <!-- Éléments décoratifs dynamiques -->
+  <div class="absolute top-0 left-0 w-full h-full">
+    <div class="absolute top-1/3 left-1/4 w-64 h-64 rounded-full bg-primary/5 blur-3xl animate-float"></div>
+    <div class="absolute bottom-1/4 right-1/4 w-72 h-72 rounded-full bg-secondary/5 blur-3xl animate-float animation-delay-3000"></div>
+    <div class="absolute top-1/2 left-1/2 w-40 h-40 rounded-full bg-accent/5 blur-3xl animate-float animation-delay-1500"></div>
+  </div>
+
+  <div class="max-w-6xl mx-auto relative z-10">
+    <!-- En-tête inspirant -->
+    <div class="text-center mb-20">
+      <span class="inline-flex items-center px-4 py-2 bg-white dark:bg-gray-700 rounded-full text-sm font-medium text-primary dark:text-accent mb-4 shadow-sm">
+        <i class="fas fa-binoculars mr-2"></i> Notre Boussole
+      </span>
+      <h2 class="text-4xl md:text-5xl font-bold mb-6">
+        Vision <span class="text-gradient">2030</span>
+      </h2>
+      <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+        Notre feuille de route pour transformer le Congo à travers l'engagement patriotique des jeunes
+      </p>
+    </div>
+
+    <!-- Objectif principal -->
+    <div class="bg-white dark:bg-gray-700 rounded-2xl shadow-xl p-10 mb-16 border-l-8 border-primary relative overflow-hidden">
+      <div class="absolute -right-10 -top-10 text-9xl opacity-10 text-primary dark:text-accent font-bold">80%</div>
+      <div class="relative">
+        <h3 class="text-2xl md:text-3xl font-bold mb-6">
+          <span class="text-primary dark:text-accent">Objectif Phare :</span> 80% de jeunes patriotes engagés
+        </h3>
+        <div class="prose dark:prose-invert max-w-none">
+          <p class="text-lg">
+            D'ici 2030, nous visons à ce que <span class="font-semibold text-primary dark:text-accent">80% des jeunes Congolais</span> s'identifient comme patriotes actifs, contribuant quotidiennement au développement national à travers leurs actions.
+          </p>
+          <div class="mt-6 p-6 bg-gray-50 dark:bg-gray-600/30 rounded-lg border border-gray-100 dark:border-gray-600">
+            <p class="font-medium italic">
+              "Imaginez un Congo où chaque jeune considère le développement national comme une responsabilité personnelle. C'est l'avenir que nous bâtissons."
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Piliers stratégiques -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
+      <!-- Pilier 1 -->
+      <div class="bg-white dark:bg-gray-700 rounded-2xl shadow-lg hover:shadow-xl transition-shadow p-8 border-t-4 border-primary">
+        <div class="text-5xl font-bold text-primary dark:text-accent mb-4">01</div>
+        <h3 class="text-xl font-bold mb-4">Éducation Patriotique</h3>
+        <p class="text-gray-600 dark:text-gray-300 mb-6">
+          Intégrer les valeurs patriotiques dans 60% des programmes éducatifs formels et informels.
+        </p>
+        <ul class="space-y-2 text-sm text-gray-500 dark:text-gray-400">
+          <li class="flex items-start">
+            <span class="text-secondary mr-2">✓</span>
+            <span>Réforme des curricula scolaires</span>
+          </li>
+          <li class="flex items-start">
+            <span class="text-secondary mr-2">✓</span>
+            <span>Universités patriotiques</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Pilier 2 -->
+      <div class="bg-white dark:bg-gray-700 rounded-2xl shadow-lg hover:shadow-xl transition-shadow p-8 border-t-4 border-secondary">
+        <div class="text-5xl font-bold text-secondary mb-4">02</div>
+        <h3 class="text-xl font-bold mb-4">Économie Engagée</h3>
+        <p class="text-gray-600 dark:text-gray-300 mb-6">
+          30% des startups créées par des jeunes intégrant une dimension patriotique claire.
+        </p>
+        <ul class="space-y-2 text-sm text-gray-500 dark:text-gray-400">
+          <li class="flex items-start">
+            <span class="text-primary mr-2">✓</span>
+            <span>Fonds d'investissement patriotique</span>
+          </li>
+          <li class="flex items-start">
+            <span class="text-primary mr-2">✓</span>
+            <span>Réseau d'entrepreneurs engagés</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Pilier 3 -->
+      <div class="bg-white dark:bg-gray-700 rounded-2xl shadow-lg hover:shadow-xl transition-shadow p-8 border-t-4 border-accent">
+        <div class="text-5xl font-bold text-accent mb-4">03</div>
+        <h3 class="text-xl font-bold mb-4">Culture Nationale</h3>
+        <p class="text-gray-600 dark:text-gray-300 mb-6">
+          Multiplier par 5 la production culturelle mettant en avant les valeurs patriotiques.
+        </p>
+        <ul class="space-y-2 text-sm text-gray-500 dark:text-gray-400">
+          <li class="flex items-start">
+            <span class="text-secondary mr-2">✓</span>
+            <span>Résidences d'artistes engagés</span>
+          </li>
+          <li class="flex items-start">
+            <span class="text-secondary mr-2">✓</span>
+            <span>Festivals du récit national</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Feuille de route -->
+    <div class="bg-white dark:bg-gray-700 rounded-2xl shadow-xl overflow-hidden mb-16">
+      <div class="grid grid-cols-1 lg:grid-cols-2">
+        <!-- Carte -->
+        <div class="p-10 bg-gradient-to-r from-primary/5 to-secondary/5 flex items-center justify-center">
+          <div class="relative w-full h-64">
+            <img src="/assets/images/rdc-map.png" alt="Carte de la RDC" class="absolute inset-0 w-full h-full object-contain opacity-70">
+            <div class="absolute inset-0 flex items-center justify-center">
+              <div class="animate-pulse-slow bg-white dark:bg-gray-800 rounded-full p-6 shadow-lg border-4 border-primary/20">
+                <div class="bg-gradient-to-r from-primary to-secondary text-transparent bg-clip-text text-4xl font-bold">100%</div>
+                <div class="text-xs text-gray-500 dark:text-gray-400 mt-1">Couverture nationale</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Contenu -->
+        <div class="p-10 lg:p-12">
+          <h3 class="text-2xl font-bold mb-6">Stratégie Territoriale</h3>
+          <p class="text-gray-600 dark:text-gray-300 mb-6">
+            Notre déploiement progressif pour toucher chaque province d'ici 2028 :
+          </p>
+          
+          <div class="space-y-6">
+            <!-- Phase 1 -->
+            <div class="flex">
+              <div class="flex-shrink-0 mr-6">
+                <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary dark:text-accent font-bold">1</div>
+              </div>
+              <div>
+                <h4 class="font-semibold text-gray-800 dark:text-white mb-2">Phase Pilote (2021-2023)</h4>
+                <p class="text-gray-600 dark:text-gray-300 text-sm">
+                  Kinshasa, Kongo Central et Haut-Katanga avec 12 projets modèles
+                </p>
+              </div>
+            </div>
+            
+            <!-- Phase 2 -->
+            <div class="flex">
+              <div class="flex-shrink-0 mr-6">
+                <div class="w-12 h-12 rounded-full bg-secondary/10 flex items-center justify-center text-secondary font-bold">2</div>
+              </div>
+              <div>
+                <h4 class="font-semibold text-gray-800 dark:text-white mb-2">Expansion Régionale (2024-2026)</h4>
+                <p class="text-gray-600 dark:text-gray-300 text-sm">
+                  8 provinces supplémentaires et 5 centres de formation
+                </p>
+              </div>
+            </div>
+            
+            <!-- Phase 3 -->
+            <div class="flex">
+              <div class="flex-shrink-0 mr-6">
+                <div class="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center text-accent font-bold">3</div>
+              </div>
+              <div>
+                <h4 class="font-semibold text-gray-800 dark:text-white mb-2">Généralisation (2027-2030)</h4>
+                <p class="text-gray-600 dark:text-gray-300 text-sm">
+                  Couverture nationale avec 26 antennes locales et 100 facilitateurs
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="text-center">
+      <a href="/actions" class="inline-flex items-center justify-center gap-3 bg-gradient-to-r from-primary to-secondary text-white px-8 py-4 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1 group">
+        Contribuer à cette vision
+        <span class="group-hover:translate-x-1 transition-transform">
+          <i class="fas fa-arrow-right"></i>
+        </span>
+      </a>
+    </div>
+  </div>
+
+  <!-- Styles d'animation -->
+  <style>
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+    .animate-float {
+      animation: float 8s ease-in-out infinite;
+    }
+    .animation-delay-1500 {
+      animation-delay: 1.5s;
+    }
+    .animation-delay-3000 {
+      animation-delay: 3s;
+    }
+    @keyframes pulse-slow {
+      0%, 100% { transform: scale(1); opacity: 0.8; }
+      50% { transform: scale(1.05); opacity: 1; }
+    }
+    .animate-pulse-slow {
+      animation: pulse-slow 4s ease-in-out infinite;
+    }
+  </style>
+</section>
+
+
+
+
+
+
+<!-- Footer -->
+<footer class="bg-gray-900 text-white pt-20 pb-12 px-[5%] relative overflow-hidden">
+  <!-- Éléments décoratifs -->
+  <div class="absolute top-0 left-0 w-full h-full opacity-10">
+    <div class="absolute top-1/4 left-1/4 w-60 h-60 rounded-full bg-primary/20 blur-3xl"></div>
+    <div class="absolute bottom-1/3 right-1/4 w-80 h-80 rounded-full bg-secondary/20 blur-3xl"></div>
+  </div>
+
+  <div class="max-w-7xl mx-auto relative z-10">
+    <!-- Contenu principal -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-16">
+      <!-- Colonne 1 : Logo & Description -->
+      <div class="lg:pr-8">
+        <div class="flex items-center gap-2 mb-6">
+          <img src="/assets/images/logo-patriotes-white.png" alt="Logo Les Patriotes" class="h-10">
+          <span class="text-2xl font-bold">
+            Les <span class="text-secondary">Patriotes</span>
+          </span>
+        </div>
+        <p class="text-gray-400 mb-6">
+          Un mouvement de jeunes engagés pour le développement national à travers l'action concrète et l'innovation sociale.
+        </p>
+        <div class="flex space-x-4">
+          <a href="#" class="w-10 h-10 rounded-full bg-gray-800 hover:bg-primary flex items-center justify-center text-white hover:-translate-y-1 transition-all">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          <a href="#" class="w-10 h-10 rounded-full bg-gray-800 hover:bg-secondary flex items-center justify-center text-white hover:-translate-y-1 transition-all">
+            <i class="fab fa-twitter"></i>
+          </a>
+          <a href="#" class="w-10 h-10 rounded-full bg-gray-800 hover:bg-primary flex items-center justify-center text-white hover:-translate-y-1 transition-all">
+            <i class="fab fa-linkedin-in"></i>
+          </a>
+          <a href="#" class="w-10 h-10 rounded-full bg-gray-800 hover:bg-secondary flex items-center justify-center text-white hover:-translate-y-1 transition-all">
+            <i class="fab fa-instagram"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Colonne 2 : Liens rapides -->
+      <div>
+        <h3 class="text-lg font-bold mb-6 text-white uppercase tracking-wider">Liens Rapides</h3>
+        <ul class="space-y-3">
+          <li><a href="#" class="text-gray-400 hover:text-primary transition flex items-center gap-2">
+            <i class="fas fa-chevron-right text-xs text-secondary"></i> Accueil
+          </a></li>
+          <li><a href="#" class="text-gray-400 hover:text-primary transition flex items-center gap-2">
+            <i class="fas fa-chevron-right text-xs text-secondary"></i> À Propos
+          </a></li>
+          <li><a href="#" class="text-gray-400 hover:text-primary transition flex items-center gap-2">
+            <i class="fas fa-chevron-right text-xs text-secondary"></i> Nos Actions
+          </a></li>
+          <li><a href="#" class="text-gray-400 hover:text-primary transition flex items-center gap-2">
+            <i class="fas fa-chevron-right text-xs text-secondary"></i> Blog
+          </a></li>
+          <li><a href="#" class="text-gray-400 hover:text-primary transition flex items-center gap-2">
+            <i class="fas fa-chevron-right text-xs text-secondary"></i> Contact
+          </a></li>
+        </ul>
+      </div>
+
+      <!-- Colonne 3 : Nos Actions -->
+      <div>
+        <h3 class="text-lg font-bold mb-6 text-white uppercase tracking-wider">Nos Actions</h3>
+        <ul class="space-y-3">
+          <li><a href="#" class="text-gray-400 hover:text-primary transition flex items-center gap-2">
+            <i class="fas fa-chevron-right text-xs text-secondary"></i> Écoles Patriotiques
+          </a></li>
+          <li><a href="#" class="text-gray-400 hover:text-primary transition flex items-center gap-2">
+            <i class="fas fa-chevron-right text-xs text-secondary"></i> Villes Vertes
+          </a></li>
+          <li><a href="#" class="text-gray-400 hover:text-primary transition flex items-center gap-2">
+            <i class="fas fa-chevron-right text-xs text-secondary"></i> Jeunes Innovateurs
+          </a></li>
+          <li><a href="#" class="text-gray-400 hover:text-primary transition flex items-center gap-2">
+            <i class="fas fa-chevron-right text-xs text-secondary"></i> Prix Patriotiques
+          </a></li>
+          <li><a href="#" class="text-gray-400 hover:text-primary transition flex items-center gap-2">
+            <i class="fas fa-chevron-right text-xs text-secondary"></i> Échanges Interrégionaux
+          </a></li>
+        </ul>
+      </div>
+
+      <!-- Colonne 4 : Newsletter -->
+      <div>
+        <h3 class="text-lg font-bold mb-6 text-white uppercase tracking-wider">Newsletter</h3>
+        <p class="text-gray-400 mb-6">
+          Abonnez-vous pour recevoir nos dernières actualités et opportunités d'engagement.
+        </p>
+        <form class="space-y-4">
+          <div class="relative">
+            <input type="email" placeholder="Votre email" class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent placeholder-gray-500">
+          </div>
+          <button type="submit" class="w-full bg-gradient-to-r from-primary to-secondary text-white px-6 py-3 rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1 flex items-center justify-center gap-2">
+            S'abonner <i class="fas fa-paper-plane"></i>
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Ligne de séparation -->
+    <div class="border-t border-gray-800 my-10"></div>
+
+    <!-- Bas de footer -->
+    <div class="flex flex-col md:flex-row justify-between items-center">
+      <div class="text-gray-500 text-sm mb-4 md:mb-0">
+        &copy; 2023 Les Patriotes. Tous droits réservés.
+      </div>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="#" class="text-gray-500 hover:text-primary transition text-sm">Politique de confidentialité</a>
+        <a href="#" class="text-gray-500 hover:text-primary transition text-sm">Conditions d'utilisation</a>
+        <a href="#" class="text-gray-500 hover:text-primary transition text-sm">Mentions légales</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bouton retour en haut -->
+  <button id="back-to-top" class="fixed bottom-8 right-8 w-12 h-12 rounded-full bg-gradient-to-r from-primary to-secondary text-white shadow-xl flex items-center justify-center opacity-0 invisible transition-all duration-300 hover:scale-105">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+</footer>
+
+<!-- Script pour le bouton retour en haut -->
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const backToTopButton = document.getElementById('back-to-top');
+    
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 300) {
+        backToTopButton.classList.remove('opacity-0', 'invisible');
+        backToTopButton.classList.add('opacity-100', 'visible');
+      } else {
+        backToTopButton.classList.remove('opacity-100', 'visible');
+        backToTopButton.classList.add('opacity-0', 'invisible');
+      }
+    });
+
+    backToTopButton.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+  });
+</script>
+
+
+
+
+
+
+  <!-- JavaScript -->
+  <script src="../js/home/navbar.js">
+   
+  </script>
+</body>
+</html>

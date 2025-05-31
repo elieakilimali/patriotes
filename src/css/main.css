@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom CSS */
+@layer components {
+  /* Vous pouvez aussi définir des classes ici */
+  .btn-primary {
+    @apply bg-gradient-to-r from-primary to-secondary text-white px-6 py-2 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all hover:-translate-y-0.5;
+  }
+}
+
+
+/* HERO SECTION  */
+.hero-pattern {
+  background-image: radial-gradient(circle at 25% 60%, rgba(0, 71, 171, 0.15) 0%, transparent 40%), 
+                  radial-gradient(circle at 75% 30%, rgba(206, 17, 38, 0.15) 0%, transparent 45%);
+}
+.text-gradient {
+  background: linear-gradient(90deg, #0047AB 0%, #CE1126 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.floating {
+  animation: floating 6s ease-in-out infinite;
+}
+@keyframes floating {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
